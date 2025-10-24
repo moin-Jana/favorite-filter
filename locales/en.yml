@@ -1,0 +1,39 @@
+en:
+  theme_metadata:
+    description: 'Allow users to save their favorite filters and optionally define default filters'
+    settings:
+      custom_user_field_ID: "ID of the custom user field. Use 0 to disable saving personal favorites. <br> Steps to create one: <br> Go to <a href=\"%{base_path}/admin/config/user-fields\">User Fields</a> <br> Click “Add User Field”, choose “Text”, and enter a name and description. <br> The field should be optional, editable after signup, but not shown on the signup form. <br> After saving, edit the field to find the ID in the URL, then enter that ID here."
+      custom_favorite_filters_allowed_groups: "Groups allowed to save and customize their own favorite filters. Users who aren't logged in can never save favorites."
+      default_favorites: "Filter favorites shown to users who haven’t configured their own."
+      default_favorite_filters_groups: "Show the default filters only to members of these groups. For example, you can limit them to logged-in users if your default filters require login."
+      show_for_admin: "Show the custom user field for admins.<br>Useful for copying your configuration to the default favorites setting."
+  apply_filter: "Apply filter: %{filter}"
+  filter_buttons:
+    save: "Add current filter to favorites"
+    edit: "Edit favorite filters"
+  modal:
+    title:
+      add_fav: "Add filter favorite"
+      edit_fav: "Edit filter favorites"
+    move_up: "Move '%{label}'' up"
+    move_down: "Move '%{label}'' down"
+    edit: "Edit '%{label}'"
+    delete: "Delete '%{label}'"
+    title_label: "Label:"
+    query_label: "Filter query:"
+    choose_emoji_label: "Choose emoji"
+    choose_icon_label: "Choose icon"
+    symbol_type_label: "Add a symbol?"
+    symbolType:
+      icon: "Icon"
+      emoji: "Emoji"
+      none: "None"
+    save_btn: "Save"
+    cancel_btn: "Cancel"
+    reset_btn: "Reset to defaults"
+    error:
+      too_long_title: "Saving failed"
+      too_long_message: "You cannot save more than 2048 characters. Please remove some favorites or shorten them."
+      general_message: "An error occurred"
+      title_required: "Please enter a label"
+      query_required: "Please enter a filter query"

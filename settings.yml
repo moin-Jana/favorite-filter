@@ -1,0 +1,17 @@
+custom_user_field_ID:
+  default: 0
+  type: integer
+custom_favorite_filters_allowed_groups:
+  type: list
+  list_type: group
+  default: "10"
+show_for_admin: 
+  default: true
+  type: bool
+default_favorites:
+  default: ""
+  type: string
+default_favorite_filters_groups:
+  type: list
+  list_type: group
+  default: "0"
