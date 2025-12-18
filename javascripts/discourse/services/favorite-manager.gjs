@@ -39,6 +39,8 @@ export default class FavoriteManager extends Service {
 
   @tracked favorites = [];
 
+  _loading = false;
+
   get allowedToCustomizeFilters() {
     if (!this.currentUser || USERFIELD_ID === 0) {
       return false;
@@ -85,12 +87,19 @@ export default class FavoriteManager extends Service {
   }
 
   async loadFavorites() {
-    let favString = window.localStorage.getItem(STORAGE_KEY) || "";
-    this.favorites = parseFavorites(favString);
+    if (this._loading) {
+      return;
+    }
 
-    let serverString = "";
-    if (this.allowedToCustomizeFilters) {
-      try {
+    this._loading = true;
+
+    try {
+      let favString = window.localStorage.getItem(STORAGE_KEY) || "";
+      this.favorites = parseFavorites(favString);
+
+      let serverString = "";
+
+      if (this.allowedToCustomizeFilters) {
         const result = await ajax(`/u/${this.currentUser.username}.json`);
         serverString = result.user.user_fields[USERFIELD_ID] || "";
 
@@ -99,25 +108,24 @@ export default class FavoriteManager extends Service {
           this.favorites = parseFavorites(serverString);
           favString = serverString;
         }
-      } catch (e) {
-        // eslint-disable-next-line no-console
-        console.warn("Failed to parse favorites from stored string: ", e);
+      } else {
+        localStorage.removeItem(STORAGE_KEY);
+        this.favorites = [];
       }
-    } else {
-      localStorage.removeItem(STORAGE_KEY);
-      this.favorites = [];
-    }
 
-    const defaultString = settings.default_favorites || "";
+      const defaultString = settings.default_favorites || "";
 
-    if (
-      this.allowedToLoadDefaultFilters &&
-      !serverString &&
-      defaultString &&
-      (!favString || defaultString !== favString)
-    ) {
-      window.localStorage.setItem(STORAGE_KEY, defaultString);
-      this.favorites = parseFavorites(defaultString);
+      if (
+        this.allowedToLoadDefaultFilters &&
+        !serverString &&
+        defaultString &&
+        (!favString || defaultString !== favString)
+      ) {
+        window.localStorage.setItem(STORAGE_KEY, defaultString);
+        this.favorites = parseFavorites(defaultString);
+      }
+    } finally {
+      this._loading = false;
     }
   }
 
