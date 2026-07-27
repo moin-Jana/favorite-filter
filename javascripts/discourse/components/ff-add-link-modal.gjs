@@ -6,27 +6,30 @@ import { on } from "@ember/modifier";
 import { action } from "@ember/object";
 import { next } from "@ember/runloop";
 import { service } from "@ember/service";
-import { eq } from "truth-helpers";
-import DButton from "discourse/components/d-button";
-import DModal from "discourse/components/d-modal";
 import EmojiPicker from "discourse/components/emoji-picker";
-import RadioButton from "discourse/components/radio-button";
-import icon from "discourse/helpers/d-icon";
+import IconPicker from "discourse/select-kit/components/icon-picker";
+import { eq } from "discourse/truth-helpers";
+import DButton from "discourse/ui-kit/d-button";
+import DModal from "discourse/ui-kit/d-modal";
+import DRadioButton from "discourse/ui-kit/d-radio-button";
+import dIcon from "discourse/ui-kit/helpers/d-icon";
 import { i18n } from "discourse-i18n";
-import IconPicker from "select-kit/components/icon-picker";
 
 export default class FFAddLinkModal extends Component {
   @service favoriteManager;
   @service dialog;
 
   @tracked title = "";
-  @tracked query = this.args.model.currentQuery;
   @tracked icon = null;
   @tracked emoji = null;
   @tracked styleType = "none";
 
   @tracked validationErrorTitle = null;
   @tracked validationErrorQuery = null;
+
+  get query() {
+    return this.args.model.currentQuery;
+  }
 
   @action
   updateField(field, event) {
@@ -110,7 +113,7 @@ export default class FFAddLinkModal extends Component {
               <label>{{i18n (themePrefix "modal.title_label")}}</label>
               {{#if this.validationErrorTitle}}
                 <div class="input-error">
-                  {{icon "xmark"}}
+                  {{dIcon "xmark"}}
                   {{i18n (themePrefix this.validationErrorTitle)}}
                 </div>
               {{/if}}
@@ -128,7 +131,7 @@ export default class FFAddLinkModal extends Component {
               <label>{{i18n (themePrefix "modal.query_label")}}</label>
               {{#if this.validationErrorQuery}}
                 <div class="input-error">
-                  {{icon "xmark"}}
+                  {{dIcon "xmark"}}
                   {{i18n (themePrefix this.validationErrorQuery)}}
                 </div>
               {{/if}}
@@ -147,7 +150,7 @@ export default class FFAddLinkModal extends Component {
             <div class="symbol-type-layout">
               <div class="symbol-type-options">
                 <label class="radio-option">
-                  <RadioButton
+                  <DRadioButton
                     @value="icon"
                     @selection={{this.styleType}}
                     {{on "change" (fn (mut this.styleType) "icon")}}
@@ -156,7 +159,7 @@ export default class FFAddLinkModal extends Component {
                 </label>
 
                 <label class="radio-option">
-                  <RadioButton
+                  <DRadioButton
                     @value="emoji"
                     @selection={{this.styleType}}
                     {{on "change" (fn (mut this.styleType) "emoji")}}
@@ -165,7 +168,7 @@ export default class FFAddLinkModal extends Component {
                 </label>
 
                 <label class="radio-option">
-                  <RadioButton
+                  <DRadioButton
                     @value="none"
                     @selection={{this.styleType}}
                     {{on "change" (fn (mut this.styleType) "none")}}

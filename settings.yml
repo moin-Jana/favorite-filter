@@ -5,7 +5,7 @@ custom_favorite_filters_allowed_groups:
   type: list
   list_type: group
   default: "10"
-show_for_admin: 
+show_for_admin:
   default: true
   type: bool
 default_favorites:

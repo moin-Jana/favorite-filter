@@ -5,15 +5,15 @@ import { fn, hash } from "@ember/helper";
 import { on } from "@ember/modifier";
 import { action } from "@ember/object";
 import { service } from "@ember/service";
-import { eq, or } from "truth-helpers";
-import DButton from "discourse/components/d-button";
-import DModal from "discourse/components/d-modal";
 import EmojiPicker from "discourse/components/emoji-picker";
-import RadioButton from "discourse/components/radio-button";
-import icon from "discourse/helpers/d-icon";
-import emoji from "discourse/helpers/emoji";
+import IconPicker from "discourse/select-kit/components/icon-picker";
+import { eq, or } from "discourse/truth-helpers";
+import DButton from "discourse/ui-kit/d-button";
+import DModal from "discourse/ui-kit/d-modal";
+import DRadioButton from "discourse/ui-kit/d-radio-button";
+import dEmoji from "discourse/ui-kit/helpers/d-emoji";
+import dIcon from "discourse/ui-kit/helpers/d-icon";
 import { i18n } from "discourse-i18n";
-import IconPicker from "select-kit/components/icon-picker";
 
 class EditableFavorite {
   @tracked label;
@@ -227,11 +227,11 @@ export default class FFEditLinkModal extends Component {
                   <span class="symbol-title">
                     {{#if (eq fav.styleType "emoji")}}
                       {{#if fav.emoji}}
-                        {{emoji fav.emoji}}
+                        {{dEmoji fav.emoji}}
                       {{/if}}
                     {{else if (eq fav.styleType "icon")}}
                       {{#if fav.uiIcon}}
-                        {{icon fav.uiIcon}}
+                        {{dIcon fav.uiIcon}}
                       {{/if}}
                     {{/if}}
                     <span class="fav-title">{{fav.label}}</span>
@@ -281,7 +281,7 @@ export default class FFEditLinkModal extends Component {
                           }}</label>
                         {{#if fav.validationErrorLabel}}
                           <div class="input-error">
-                            {{icon "xmark"}}
+                            {{dIcon "xmark"}}
                             {{i18n (themePrefix fav.validationErrorLabel)}}
                           </div>
                         {{/if}}
@@ -305,7 +305,7 @@ export default class FFEditLinkModal extends Component {
                           }}</label>
                         {{#if fav.validationErrorQuery}}
                           <div class="input-error">
-                            {{icon "xmark"}}
+                            {{dIcon "xmark"}}
                             {{i18n (themePrefix fav.validationErrorQuery)}}
                           </div>
                         {{/if}}
@@ -329,7 +329,7 @@ export default class FFEditLinkModal extends Component {
                       <div class="symbol-type-layout">
                         <div class="symbol-type-options">
                           <label class="radio-option">
-                            <RadioButton
+                            <DRadioButton
                               @value="icon"
                               @selection={{fav.styleType}}
                               {{on
@@ -340,7 +340,7 @@ export default class FFEditLinkModal extends Component {
                             {{i18n (themePrefix "modal.symbolType.icon")}}
                           </label>
                           <label class="radio-option">
-                            <RadioButton
+                            <DRadioButton
                               @value="emoji"
                               @selection={{fav.styleType}}
                               {{on
@@ -351,7 +351,7 @@ export default class FFEditLinkModal extends Component {
                             {{i18n (themePrefix "modal.symbolType.emoji")}}
                           </label>
                           <label class="radio-option">
-                            <RadioButton
+                            <DRadioButton
                               @value="none"
                               @selection={{fav.styleType}}
                               {{on

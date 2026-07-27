@@ -1,9 +1,9 @@
 import Component from "@glimmer/component";
 import { concat } from "@ember/helper";
 import { service } from "@ember/service";
-import { eq } from "truth-helpers";
-import icon from "discourse/helpers/d-icon";
-import emoji from "discourse/helpers/emoji";
+import { eq } from "discourse/truth-helpers";
+import dEmoji from "discourse/ui-kit/helpers/d-emoji";
+import dIcon from "discourse/ui-kit/helpers/d-icon";
 import { i18n } from "discourse-i18n";
 
 export default class FFLinks extends Component {
@@ -26,9 +26,9 @@ export default class FFLinks extends Component {
           aria-label={{i18n (themePrefix "apply_filter") filter=fav.label}}
         >
           {{#if fav.emoji}}
-            {{emoji fav.emoji}}
+            {{dEmoji fav.emoji}}
           {{else if fav.icon}}
-            {{icon fav.icon}}
+            {{dIcon fav.icon}}
           {{/if}}
           <span class="fav-label">{{fav.label}}</span>
         </a>
