@@ -10,5 +10,6 @@
   "assets": {
   },
   "modifiers": {
+    "svg_icons": ["floppy-disk"]
   }
 }
