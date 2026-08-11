@@ -40,7 +40,7 @@ export default class FFButtons extends Component {
             @icon="far-star"
             @action={{this.showAddModal}}
             @translatedTitle={{i18n (themePrefix "filter_buttons.save")}}
-            class="btn"
+            class="btn-default"
           />
         {{/if}}
 
@@ -49,7 +49,7 @@ export default class FFButtons extends Component {
             @icon="pencil"
             @action={{this.showEditModal}}
             @translatedTitle={{i18n (themePrefix "filter_buttons.edit")}}
-            class="btn"
+            class="btn-default"
           />
         {{/if}}
       </div>

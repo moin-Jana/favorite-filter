@@ -20,7 +20,7 @@ export default class FFLinks extends Component {
       {{#each this.favoriteManager.favorites as |fav|}}
         <a
           href={{concat "/filter?q=" (encodeURIComponent fav.query)}}
-          class="btn filter-favorite-btn
+          class="btn btn-default filter-favorite-btn
             {{if (this.isActive fav.query @currentQuery) 'is-active'}}"
           aria-current={{if (eq fav.query @currentQuery) "page" undefined}}
           aria-label={{i18n (themePrefix "apply_filter") filter=fav.label}}

@@ -204,7 +204,7 @@ export default class FFEditLinkModal extends Component {
                     (themePrefix "modal.move_up")
                     label=fav.label
                   }}
-                  class="btn-ff"
+                  class="btn-ff btn-default"
                 />
                 <DButton
                   @icon="arrow-down"
@@ -218,7 +218,7 @@ export default class FFEditLinkModal extends Component {
                     (themePrefix "modal.move_down")
                     label=fav.label
                   }}
-                  class="btn-ff"
+                  class="btn-ff btn-default"
                 />
               </div>
 
@@ -253,7 +253,7 @@ export default class FFEditLinkModal extends Component {
                         (themePrefix "modal.edit")
                         label=fav.label
                       }}
-                      class="btn-ff"
+                      class="btn-ff btn-transparent"
                     />
                     <DButton
                       @icon="trash-can"
@@ -266,7 +266,7 @@ export default class FFEditLinkModal extends Component {
                         (themePrefix "modal.delete")
                         label=fav.label
                       }}
-                      class="btn-ff"
+                      class="btn-ff btn-transparent"
                     />
                   </span>
                 </div>
@@ -420,7 +420,7 @@ export default class FFEditLinkModal extends Component {
             @icon="arrow-rotate-left"
             @translatedLabel={{i18n (themePrefix "modal.reset_btn")}}
             @action={{this.resetToDefault}}
-            class="btn-flat reset-btn"
+            class="reset-btn"
           />
         </div>
       </:footer>
