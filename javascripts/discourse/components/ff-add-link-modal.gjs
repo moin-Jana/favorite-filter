@@ -1,15 +1,15 @@
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { Input } from "@ember/component";
-import { fn, hash } from "@ember/helper";
+import { fn } from "@ember/helper";
 import { on } from "@ember/modifier";
 import { action } from "@ember/object";
 import { next } from "@ember/runloop";
 import { service } from "@ember/service";
 import EmojiPicker from "discourse/components/emoji-picker";
-import IconPicker from "discourse/select-kit/components/icon-picker";
 import { eq } from "discourse/truth-helpers";
 import DButton from "discourse/ui-kit/d-button";
+import DIconGridPicker from "discourse/ui-kit/d-icon-grid-picker";
 import DModal from "discourse/ui-kit/d-modal";
 import DRadioButton from "discourse/ui-kit/d-radio-button";
 import dIcon from "discourse/ui-kit/helpers/d-icon";
@@ -179,11 +179,12 @@ export default class FFAddLinkModal extends Component {
 
               <div class="symbol-type-picker">
                 {{#if (eq this.styleType "icon")}}
-                  <IconPicker
+                  <DIconGridPicker
                     @value={{this.icon}}
                     @onChange={{this.setIconSafely}}
                     @onlyAvailable={{true}}
-                    @options={{hash maximum=1 icons=this.icon}}
+                    @label={{if this.icon "" " + "}}
+                    @btnClass="btn-default"
                     aria-label={{i18n (themePrefix "modal.choose_icon_label")}}
                   />
                 {{else if (eq this.styleType "emoji")}}
