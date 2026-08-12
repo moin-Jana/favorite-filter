@@ -4,7 +4,7 @@
   "authors": "Moin",
   "about_url": "https://meta.discourse.org/t/filter-favorites/386594",
   "license_url": "https://github.com/moin-Jana/favorite-filter/blob/main/LICENSE",
-  "theme_version": "0.0.1",
+  "theme_version": "1.0.0",
   "minimum_discourse_version": "3.6.0.beta1",
   "maximum_discourse_version": null,
   "assets": {

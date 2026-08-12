@@ -71,6 +71,10 @@ export default class FFEditLinkModal extends Component {
     );
   }
 
+  get canSeeDefaultFilters() {
+    return this.favoriteManager.allowedToLoadDefaultFilters;
+  }
+
   @action
   toggleExpanded(idx) {
     this.expandedIndex = this.expandedIndex === idx ? null : idx;
@@ -417,12 +421,14 @@ export default class FFEditLinkModal extends Component {
           />
         </div>
         <div class="btn-right">
-          <DButton
-            @icon="arrow-rotate-left"
-            @translatedLabel={{i18n (themePrefix "modal.reset_btn")}}
-            @action={{this.resetToDefault}}
-            class="reset-btn"
-          />
+          {{#if this.canSeeDefaultFilters}}
+            <DButton
+              @icon="arrow-rotate-left"
+              @translatedLabel={{i18n (themePrefix "modal.reset_btn")}}
+              @action={{this.resetToDefault}}
+              class="reset-btn"
+            />
+          {{/if}}
         </div>
       </:footer>
     </DModal>

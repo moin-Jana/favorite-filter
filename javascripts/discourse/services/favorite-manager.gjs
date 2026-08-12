@@ -120,6 +120,9 @@ export default class FavoriteManager extends Service {
   }
 
   get defaultFavorites() {
+    if (!this.allowedToLoadDefaultFilters) {
+      return [];
+    }
     return parseFavorites(settings.default_favorites || "");
   }
 
