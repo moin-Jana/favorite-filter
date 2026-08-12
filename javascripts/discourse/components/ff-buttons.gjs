@@ -1,7 +1,7 @@
 import Component from "@glimmer/component";
 import { action } from "@ember/object";
 import { service } from "@ember/service";
-import DButton from "discourse/components/d-button";
+import DButton from "discourse/ui-kit/d-button";
 import { i18n } from "discourse-i18n";
 import FFAddLinkModal from "../components/ff-add-link-modal";
 import FFEditLinkModal from "../components/ff-edit-link-modal";
@@ -40,7 +40,7 @@ export default class FFButtons extends Component {
             @icon="far-star"
             @action={{this.showAddModal}}
             @translatedTitle={{i18n (themePrefix "filter_buttons.save")}}
-            class="btn"
+            class="btn-default"
           />
         {{/if}}
 
@@ -49,7 +49,7 @@ export default class FFButtons extends Component {
             @icon="pencil"
             @action={{this.showEditModal}}
             @translatedTitle={{i18n (themePrefix "filter_buttons.edit")}}
-            class="btn"
+            class="btn-default"
           />
         {{/if}}
       </div>

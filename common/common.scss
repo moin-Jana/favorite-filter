@@ -23,6 +23,7 @@
     display: flex;
     gap: 0.25em;
     margin-left: 0.25em;
+    border-color: var(--primary-low-mid);
   }
 
   .filter-favorite-btn {
@@ -70,6 +71,21 @@
       justify-content: flex-start;
       gap: 2em;
       margin-top: 0.5em;
+
+      .symbol-type-picker {
+        display: flex;
+
+        .d-icon-grid-picker-trigger,
+        .emoji-picker-trigger {
+          gap: unset;
+          min-width: 2.4em;
+          min-height: 2.4em;
+        }
+
+        .emoji-picker-trigger {
+          border: var(--d-button-default-border);
+        }
+      }
     }
 
     .symbol-type-options {
@@ -83,40 +99,6 @@
       align-items: center;
       gap: 0.5em;
       cursor: pointer;
-    }
-
-    .symbol-type-picker {
-      display: flex;
-      background-color: unset;
-      width: 2.4em;
-      height: 2.4em;
-
-      .icon-picker {
-        .select-kit-header-wrapper {
-          justify-content: center;
-
-          .formatted-selection {
-            display: none;
-          }
-
-          .caret-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: unset;
-            padding: unset;
-          }
-
-          .caret-icon:has(use[href="#"]) {
-            display: none;
-          }
-        }
-      }
-
-      .emoji-picker-trigger {
-        background-color: var(--secondary);
-        border-color: var(--primary-400);
-      }
     }
   }
 

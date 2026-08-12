@@ -1,7 +1,6 @@
 import { tracked } from "@glimmer/tracking";
 import Service, { service } from "@ember/service";
 import { ajax } from "discourse/lib/ajax";
-import { AUTO_GROUPS } from "discourse/lib/constants";
 
 const USERFIELD_ID = Number(settings.custom_user_field_ID);
 const STORAGE_KEY = "filterFavorites";
@@ -46,44 +45,11 @@ export default class FavoriteManager extends Service {
       return false;
     }
 
-    const rawSetting =
-      settings.custom_favorite_filters_allowed_groups?.trim() || "";
-
-    const everyoneAllowed = rawSetting.split("|").includes("0");
-
-    if (everyoneAllowed) {
-      return true;
-    }
-
-    const allowedGroupIds = rawSetting
-      .split("|")
-      .map(Number)
-      .filter((id) => id > 0);
-
-    const currentUserGroupIds = this.currentUser.groups.map((g) => g.id);
-
-    return allowedGroupIds.some((id) => currentUserGroupIds.includes(id));
+    return settings.user_in_custom_favorite_filters_allowed_groups;
   }
 
   get allowedToLoadDefaultFilters() {
-    if (!settings.default_favorite_filters_groups) {
-      return false;
-    }
-
-    const allowedGroupIds = settings.default_favorite_filters_groups
-      .split("|")
-      .map(Number);
-
-    if (allowedGroupIds.includes(AUTO_GROUPS.everyone.id)) {
-      return true;
-    }
-
-    if (this.currentUser) {
-      const currentUserGroupIds = this.currentUser.groups.map((g) => g.id);
-      return allowedGroupIds.some((id) => currentUserGroupIds.includes(id));
-    }
-
-    return false;
+    return settings.user_in_default_favorite_filters_groups;
   }
 
   async loadFavorites() {
@@ -154,6 +120,9 @@ export default class FavoriteManager extends Service {
   }
 
   get defaultFavorites() {
+    if (!this.allowedToLoadDefaultFilters) {
+      return [];
+    }
     return parseFavorites(settings.default_favorites || "");
   }
 
