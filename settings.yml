@@ -4,7 +4,9 @@ custom_user_field_ID:
 custom_favorite_filters_allowed_groups:
   type: list
   list_type: group
-  default: "10"
+  default: "10" #trust_level_0
+  disallowed_groups: "0|4" #everyone, anonymous_users
+  resolve_group_membership: true
 show_for_admin:
   default: true
   type: bool
@@ -14,4 +16,5 @@ default_favorites:
 default_favorite_filters_groups:
   type: list
   list_type: group
-  default: "0"
+  default: "4|5" #anonymous_users, logged_in_users
+  resolve_group_membership: true
